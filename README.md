@@ -59,7 +59,7 @@ dependencies {
 }
 ```
 
-After final step, OpenCV would be included within the application and thier APIs could be accessed from within the Java and Native C/C++ code. To check if OpenCV is working properly, add the following in an ```Application```, ```Activity``` or any class to load OpenCV:
+After final step, OpenCV would be included within the application and thier APIs could be accessed from within the Java and Native C/C++ code. To check if OpenCV is working properly, add the following in an ```Application```, ```Activity``` or any class to load OpenCV (make sure that the class will be accessed at runtime):
 ```
 public class MyClass {
 
