@@ -3,7 +3,14 @@ An Android Studio project which has a module that contains OpenCV SDK files port
 
 ## Integration
 
-Currently the doc contains details of integrating the ```opencv``` module into an exiting git repo of an Android Studio project using ```git submodule```. Sooner or later I'll inclde steps to include the ```opencv``` module without using ```git submodule```. It is better to understand how ```git submodule``` works via this link: [Git - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodule). For team managed git repos, read the section **Cloning a Project with Submodules** carefully.
+Currently the doc contains details of integrating the ```opencv``` module into an exiting git repo of an Android Studio project using ```git submodule```. 
+
+**Note: if your project is not versioned by git, it will not work.** You could enable git by running the following command in the project root directory, but careful not do so if your project is versioned by other VCS tools:
+```
+git init
+```
+
+Sooner or later I'll inclde steps to include the ```opencv``` module without using ```git submodule``` and for projects that are not versioned by git. It is better to understand how ```git submodule``` works via this link: [Git - Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodule). For team managed git repos, read the section **Cloning a Project with Submodules** carefully.
 
 Within the porject directory, open bash/cmd and run the following command:
 ```
@@ -21,7 +28,7 @@ Within the Project View in Android Studio, right click and choose "Configure pro
 
 Then within the ```app``` module directory (or application module that you're developing), create or alter the ```CMakeLists.txt``` file and add the following lines (Note that if you you are not developing a native library, you can skip this step):
 ```
-set(OpenCV_DIR "../opencv/src/sdk/native/jni")
+set(OpenCV_DIR "../android-opencv/opencv/src/sdk/native/jni")
 find_package(OpenCV REQUIRED)
 message(STATUS "OpenCV libraries: ${OpenCV_LIBS}")
 target_link_libraries(YOUR_TARGET_LIB ${OpenCV_LIBS})
@@ -55,7 +62,7 @@ android {
 
 dependencies {
     ...
-    compile project(':opencv')
+    compile project(':android-opencv:opencv')
 }
 ```
 
