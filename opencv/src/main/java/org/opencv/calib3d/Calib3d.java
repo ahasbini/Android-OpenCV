@@ -40,6 +40,8 @@ public class Calib3d {
             SOLVEPNP_P3P = 2,
             SOLVEPNP_DLS = 3,
             SOLVEPNP_UPNP = 4,
+            SOLVEPNP_AP3P = 5,
+            SOLVEPNP_MAX_COUNT = 5+1,
             CALIB_CB_ADAPTIVE_THRESH = 1,
             CALIB_CB_NORMALIZE_IMAGE = 2,
             CALIB_CB_FILTER_QUADS = 4,
@@ -59,6 +61,7 @@ public class Calib3d {
             CALIB_TILTED_MODEL = 0x40000,
             CALIB_FIX_TAUX_TAUY = 0x80000,
             CALIB_USE_QR = 0x100000,
+            CALIB_FIX_TANGENT_DIST = 0x200000,
             CALIB_SAME_FOCAL_LENGTH = 0x00200,
             CALIB_ZERO_DISPARITY = 0x00400,
             CALIB_USE_LU = (1 << 17),
@@ -358,6 +361,13 @@ public class Calib3d {
         
         return retVal;
     }
+
+
+    //
+    // C++:  bool findCirclesGrid(Mat image, Size patternSize, Mat& centers, int flags, Ptr_FeatureDetector blobDetector, CirclesGridFinderParameters parameters)
+    //
+
+    // Unknown type 'Ptr_FeatureDetector' (I), skipping the function
 
 
     //
@@ -813,6 +823,47 @@ public class Calib3d {
         
         int retVal = recoverPose_4(E.nativeObj, points1.nativeObj, points2.nativeObj, cameraMatrix.nativeObj, R.nativeObj, t.nativeObj);
         
+        return retVal;
+    }
+
+
+    //
+    // C++:  int recoverPose(Mat E, Mat points1, Mat points2, Mat cameraMatrix, Mat& R, Mat& t, double distanceThresh, Mat& mask = Mat(), Mat& triangulatedPoints = Mat())
+    //
+
+    //javadoc: recoverPose(E, points1, points2, cameraMatrix, R, t, distanceThresh, mask, triangulatedPoints)
+    public static int recoverPose(Mat E, Mat points1, Mat points2, Mat cameraMatrix, Mat R, Mat t, double distanceThresh, Mat mask, Mat triangulatedPoints)
+    {
+        
+        int retVal = recoverPose_5(E.nativeObj, points1.nativeObj, points2.nativeObj, cameraMatrix.nativeObj, R.nativeObj, t.nativeObj, distanceThresh, mask.nativeObj, triangulatedPoints.nativeObj);
+        
+        return retVal;
+    }
+
+    //javadoc: recoverPose(E, points1, points2, cameraMatrix, R, t, distanceThresh)
+    public static int recoverPose(Mat E, Mat points1, Mat points2, Mat cameraMatrix, Mat R, Mat t, double distanceThresh)
+    {
+        
+        int retVal = recoverPose_6(E.nativeObj, points1.nativeObj, points2.nativeObj, cameraMatrix.nativeObj, R.nativeObj, t.nativeObj, distanceThresh);
+        
+        return retVal;
+    }
+
+
+    //
+    // C++:  int solveP3P(Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, vector_Mat& rvecs, vector_Mat& tvecs, int flags)
+    //
+
+    //javadoc: solveP3P(objectPoints, imagePoints, cameraMatrix, distCoeffs, rvecs, tvecs, flags)
+    public static int solveP3P(Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, List<Mat> rvecs, List<Mat> tvecs, int flags)
+    {
+        Mat rvecs_mat = new Mat();
+        Mat tvecs_mat = new Mat();
+        int retVal = solveP3P_0(objectPoints.nativeObj, imagePoints.nativeObj, cameraMatrix.nativeObj, distCoeffs.nativeObj, rvecs_mat.nativeObj, tvecs_mat.nativeObj, flags);
+        Converters.Mat_to_vector_Mat(rvecs_mat, rvecs);
+        rvecs_mat.release();
+        Converters.Mat_to_vector_Mat(tvecs_mat, tvecs);
+        tvecs_mat.release();
         return retVal;
     }
 
@@ -1415,6 +1466,13 @@ public class Calib3d {
     // C++:  int recoverPose(Mat E, Mat points1, Mat points2, Mat cameraMatrix, Mat& R, Mat& t, Mat& mask = Mat())
     private static native int recoverPose_3(long E_nativeObj, long points1_nativeObj, long points2_nativeObj, long cameraMatrix_nativeObj, long R_nativeObj, long t_nativeObj, long mask_nativeObj);
     private static native int recoverPose_4(long E_nativeObj, long points1_nativeObj, long points2_nativeObj, long cameraMatrix_nativeObj, long R_nativeObj, long t_nativeObj);
+
+    // C++:  int recoverPose(Mat E, Mat points1, Mat points2, Mat cameraMatrix, Mat& R, Mat& t, double distanceThresh, Mat& mask = Mat(), Mat& triangulatedPoints = Mat())
+    private static native int recoverPose_5(long E_nativeObj, long points1_nativeObj, long points2_nativeObj, long cameraMatrix_nativeObj, long R_nativeObj, long t_nativeObj, double distanceThresh, long mask_nativeObj, long triangulatedPoints_nativeObj);
+    private static native int recoverPose_6(long E_nativeObj, long points1_nativeObj, long points2_nativeObj, long cameraMatrix_nativeObj, long R_nativeObj, long t_nativeObj, double distanceThresh);
+
+    // C++:  int solveP3P(Mat objectPoints, Mat imagePoints, Mat cameraMatrix, Mat distCoeffs, vector_Mat& rvecs, vector_Mat& tvecs, int flags)
+    private static native int solveP3P_0(long objectPoints_nativeObj, long imagePoints_nativeObj, long cameraMatrix_nativeObj, long distCoeffs_nativeObj, long rvecs_mat_nativeObj, long tvecs_mat_nativeObj, int flags);
 
     // C++:  void Rodrigues(Mat src, Mat& dst, Mat& jacobian = Mat())
     private static native void Rodrigues_0(long src_nativeObj, long dst_nativeObj, long jacobian_nativeObj);

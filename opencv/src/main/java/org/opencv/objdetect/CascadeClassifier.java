@@ -6,11 +6,13 @@ package org.opencv.objdetect;
 
 import java.lang.String;
 import java.util.ArrayList;
+import java.util.List;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
 import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Size;
+import org.opencv.utils.Converters;
 
 // C++: class CascadeClassifier
 //javadoc: CascadeClassifier
@@ -19,6 +21,7 @@ public class CascadeClassifier {
     protected final long nativeObj;
     protected CascadeClassifier(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
 
     //
     // C++:   CascadeClassifier(String filename)

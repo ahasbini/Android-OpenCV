@@ -16,6 +16,7 @@ public class BOWTrainer {
     protected final long nativeObj;
     protected BOWTrainer(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
 
     //
     // C++:  Mat cluster(Mat descriptors)

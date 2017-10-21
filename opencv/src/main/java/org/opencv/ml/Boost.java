@@ -4,7 +4,7 @@
 //
 package org.opencv.ml;
 
-
+import java.lang.String;
 
 // C++: class Boost
 //javadoc: Boost
@@ -29,6 +29,29 @@ public class Boost extends DTrees {
     {
         
         Boost retVal = new Boost(create_0());
+        
+        return retVal;
+    }
+
+
+    //
+    // C++: static Ptr_Boost load(String filepath, String nodeName = String())
+    //
+
+    //javadoc: Boost::load(filepath, nodeName)
+    public static Boost load(String filepath, String nodeName)
+    {
+        
+        Boost retVal = new Boost(load_0(filepath, nodeName));
+        
+        return retVal;
+    }
+
+    //javadoc: Boost::load(filepath)
+    public static Boost load(String filepath)
+    {
+        
+        Boost retVal = new Boost(load_1(filepath));
         
         return retVal;
     }
@@ -127,6 +150,10 @@ public class Boost extends DTrees {
 
     // C++: static Ptr_Boost create()
     private static native long create_0();
+
+    // C++: static Ptr_Boost load(String filepath, String nodeName = String())
+    private static native long load_0(String filepath, String nodeName);
+    private static native long load_1(String filepath);
 
     // C++:  double getWeightTrimRate()
     private static native double getWeightTrimRate_0(long nativeObj);

@@ -4,6 +4,7 @@
 //
 package org.opencv.ml;
 
+import java.lang.String;
 import org.opencv.core.Mat;
 import org.opencv.core.TermCriteria;
 
@@ -37,6 +38,29 @@ public class RTrees extends DTrees {
     {
         
         RTrees retVal = new RTrees(create_0());
+        
+        return retVal;
+    }
+
+
+    //
+    // C++: static Ptr_RTrees load(String filepath, String nodeName = String())
+    //
+
+    //javadoc: RTrees::load(filepath, nodeName)
+    public static RTrees load(String filepath, String nodeName)
+    {
+        
+        RTrees retVal = new RTrees(load_0(filepath, nodeName));
+        
+        return retVal;
+    }
+
+    //javadoc: RTrees::load(filepath)
+    public static RTrees load(String filepath)
+    {
+        
+        RTrees retVal = new RTrees(load_1(filepath));
         
         return retVal;
     }
@@ -81,6 +105,20 @@ public class RTrees extends DTrees {
         int retVal = getActiveVarCount_0(nativeObj);
         
         return retVal;
+    }
+
+
+    //
+    // C++:  void getVotes(Mat samples, Mat& results, int flags)
+    //
+
+    //javadoc: RTrees::getVotes(samples, results, flags)
+    public  void getVotes(Mat samples, Mat results, int flags)
+    {
+        
+        getVotes_0(nativeObj, samples.nativeObj, results.nativeObj, flags);
+        
+        return;
     }
 
 
@@ -139,6 +177,10 @@ public class RTrees extends DTrees {
     // C++: static Ptr_RTrees create()
     private static native long create_0();
 
+    // C++: static Ptr_RTrees load(String filepath, String nodeName = String())
+    private static native long load_0(String filepath, String nodeName);
+    private static native long load_1(String filepath);
+
     // C++:  TermCriteria getTermCriteria()
     private static native double[] getTermCriteria_0(long nativeObj);
 
@@ -147,6 +189,9 @@ public class RTrees extends DTrees {
 
     // C++:  int getActiveVarCount()
     private static native int getActiveVarCount_0(long nativeObj);
+
+    // C++:  void getVotes(Mat samples, Mat& results, int flags)
+    private static native void getVotes_0(long nativeObj, long samples_nativeObj, long results_nativeObj, int flags);
 
     // C++:  void setActiveVarCount(int val)
     private static native void setActiveVarCount_0(long nativeObj, int val);

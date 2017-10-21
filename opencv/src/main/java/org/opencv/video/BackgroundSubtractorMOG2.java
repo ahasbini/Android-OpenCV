@@ -4,7 +4,7 @@
 //
 package org.opencv.video;
 
-
+import org.opencv.core.Mat;
 
 // C++: class BackgroundSubtractorMOG2
 //javadoc: BackgroundSubtractorMOG2
@@ -178,6 +178,29 @@ public class BackgroundSubtractorMOG2 extends BackgroundSubtractor {
         int retVal = getShadowValue_0(nativeObj);
         
         return retVal;
+    }
+
+
+    //
+    // C++:  void apply(Mat image, Mat& fgmask, double learningRate = -1)
+    //
+
+    //javadoc: BackgroundSubtractorMOG2::apply(image, fgmask, learningRate)
+    public  void apply(Mat image, Mat fgmask, double learningRate)
+    {
+        
+        apply_0(nativeObj, image.nativeObj, fgmask.nativeObj, learningRate);
+        
+        return;
+    }
+
+    //javadoc: BackgroundSubtractorMOG2::apply(image, fgmask)
+    public  void apply(Mat image, Mat fgmask)
+    {
+        
+        apply_1(nativeObj, image.nativeObj, fgmask.nativeObj);
+        
+        return;
     }
 
 
@@ -391,6 +414,10 @@ public class BackgroundSubtractorMOG2 extends BackgroundSubtractor {
 
     // C++:  int getShadowValue()
     private static native int getShadowValue_0(long nativeObj);
+
+    // C++:  void apply(Mat image, Mat& fgmask, double learningRate = -1)
+    private static native void apply_0(long nativeObj, long image_nativeObj, long fgmask_nativeObj, double learningRate);
+    private static native void apply_1(long nativeObj, long image_nativeObj, long fgmask_nativeObj);
 
     // C++:  void setBackgroundRatio(double ratio)
     private static native void setBackgroundRatio_0(long nativeObj, double ratio);

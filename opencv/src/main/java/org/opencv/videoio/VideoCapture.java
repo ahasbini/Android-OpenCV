@@ -14,6 +14,7 @@ public class VideoCapture {
     protected final long nativeObj;
     protected VideoCapture(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
 
     //
     // C++:   VideoCapture(String filename, int apiPreference)

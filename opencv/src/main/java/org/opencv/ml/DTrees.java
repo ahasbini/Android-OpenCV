@@ -4,6 +4,7 @@
 //
 package org.opencv.ml;
 
+import java.lang.String;
 import org.opencv.core.Mat;
 
 // C++: class DTrees
@@ -43,6 +44,29 @@ public class DTrees extends StatModel {
     {
         
         DTrees retVal = new DTrees(create_0());
+        
+        return retVal;
+    }
+
+
+    //
+    // C++: static Ptr_DTrees load(String filepath, String nodeName = String())
+    //
+
+    //javadoc: DTrees::load(filepath, nodeName)
+    public static DTrees load(String filepath, String nodeName)
+    {
+        
+        DTrees retVal = new DTrees(load_0(filepath, nodeName));
+        
+        return retVal;
+    }
+
+    //javadoc: DTrees::load(filepath)
+    public static DTrees load(String filepath)
+    {
+        
+        DTrees retVal = new DTrees(load_1(filepath));
         
         return retVal;
     }
@@ -298,6 +322,10 @@ public class DTrees extends StatModel {
 
     // C++: static Ptr_DTrees create()
     private static native long create_0();
+
+    // C++: static Ptr_DTrees load(String filepath, String nodeName = String())
+    private static native long load_0(String filepath, String nodeName);
+    private static native long load_1(String filepath);
 
     // C++:  bool getTruncatePrunedTree()
     private static native boolean getTruncatePrunedTree_0(long nativeObj);

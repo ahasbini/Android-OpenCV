@@ -17,10 +17,10 @@ import org.opencv.utils.Converters;
 public class Core {
 
     // these constants are wrapped inside functions to prevent inlining
-    private static String getVersion() { return "3.2.0"; }
-    private static String getNativeLibraryName() { return "opencv_java320"; }
+    private static String getVersion() { return "3.3.0"; }
+    private static String getNativeLibraryName() { return "opencv_java330"; }
     private static int getVersionMajor() { return 3; }
-    private static int getVersionMinor() { return 2; }
+    private static int getVersionMinor() { return 3; }
     private static int getVersionRevision() { return 0; }
     private static String getVersionStatus() { return ""; }
 
@@ -135,6 +135,7 @@ public class Core {
             DFT_ROWS = 4,
             DFT_COMPLEX_OUTPUT = 16,
             DFT_REAL_OUTPUT = 32,
+            DFT_COMPLEX_INPUT = 64,
             DCT_INVERSE = DFT_INVERSE,
             DCT_ROWS = DFT_ROWS,
             BORDER_CONSTANT = 0,
@@ -315,6 +316,20 @@ public class Core {
     {
         
         boolean retVal = solve_1(src1.nativeObj, src2.nativeObj, dst.nativeObj);
+        
+        return retVal;
+    }
+
+
+    //
+    // C++:  bool useIPP()
+    //
+
+    //javadoc: useIPP()
+    public static boolean useIPP()
+    {
+        
+        boolean retVal = useIPP_0();
         
         return retVal;
     }
@@ -2215,45 +2230,60 @@ public class Core {
     }
 
 
-    // manual port
-    public static class MinMaxLocResult {
-        public double minVal;
-        public double maxVal;
-        public Point minLoc;
-        public Point maxLoc;
+    //
+    // C++:  void setUseIPP(bool flag)
+    //
 
-        public MinMaxLocResult() {
-            minVal=0; maxVal=0;
-            minLoc=new Point();
-            maxLoc=new Point();
-        }
+    //javadoc: setUseIPP(flag)
+    public static void setUseIPP(boolean flag)
+    {
+        
+        setUseIPP_0(flag);
+        
+        return;
     }
 
-    // C++: minMaxLoc(Mat src, double* minVal, double* maxVal=0, Point* minLoc=0, Point* maxLoc=0, InputArray mask=noArray())
+// manual port
+public static class MinMaxLocResult {
+    public double minVal;
+    public double maxVal;
+    public Point minLoc;
+    public Point maxLoc;
 
-    //javadoc: minMaxLoc(src, mask)
-    public static MinMaxLocResult minMaxLoc(Mat src, Mat mask) {
-        MinMaxLocResult res = new MinMaxLocResult();
-        long maskNativeObj=0;
-        if (mask != null) {
-            maskNativeObj=mask.nativeObj;
-        }
-        double resarr[] = n_minMaxLocManual(src.nativeObj, maskNativeObj);
-        res.minVal=resarr[0];
-        res.maxVal=resarr[1];
-        res.minLoc.x=resarr[2];
-        res.minLoc.y=resarr[3];
-        res.maxLoc.x=resarr[4];
-        res.maxLoc.y=resarr[5];
-        return res;
+
+    public MinMaxLocResult() {
+        minVal=0; maxVal=0;
+        minLoc=new Point();
+        maxLoc=new Point();
     }
+}
 
-    //javadoc: minMaxLoc(src)
-    public static MinMaxLocResult minMaxLoc(Mat src) {
-        return minMaxLoc(src, null);
+
+// C++: minMaxLoc(Mat src, double* minVal, double* maxVal=0, Point* minLoc=0, Point* maxLoc=0, InputArray mask=noArray())
+
+
+//javadoc: minMaxLoc(src, mask)
+public static MinMaxLocResult minMaxLoc(Mat src, Mat mask) {
+    MinMaxLocResult res = new MinMaxLocResult();
+    long maskNativeObj=0;
+    if (mask != null) {
+        maskNativeObj=mask.nativeObj;
     }
+    double resarr[] = n_minMaxLocManual(src.nativeObj, maskNativeObj);
+    res.minVal=resarr[0];
+    res.maxVal=resarr[1];
+    res.minLoc.x=resarr[2];
+    res.minLoc.y=resarr[3];
+    res.maxLoc.x=resarr[4];
+    res.maxLoc.y=resarr[5];
+    return res;
+}
 
 
+//javadoc: minMaxLoc(src)
+public static MinMaxLocResult minMaxLoc(Mat src) {
+    return minMaxLoc(src, null);
+}
 
 
     // C++:  Scalar mean(Mat src, Mat mask = Mat())
@@ -2280,6 +2310,9 @@ public class Core {
     // C++:  bool solve(Mat src1, Mat src2, Mat& dst, int flags = DECOMP_LU)
     private static native boolean solve_0(long src1_nativeObj, long src2_nativeObj, long dst_nativeObj, int flags);
     private static native boolean solve_1(long src1_nativeObj, long src2_nativeObj, long dst_nativeObj);
+
+    // C++:  bool useIPP()
+    private static native boolean useIPP_0();
 
     // C++:  double Mahalanobis(Mat v1, Mat v2, Mat icovar)
     private static native double Mahalanobis_0(long v1_nativeObj, long v2_nativeObj, long icovar_nativeObj);
@@ -2633,6 +2666,9 @@ public class Core {
 
     // C++:  void vconcat(vector_Mat src, Mat& dst)
     private static native void vconcat_0(long src_mat_nativeObj, long dst_nativeObj);
-    private static native double[] n_minMaxLocManual(long src_nativeObj, long mask_nativeObj);
+
+    // C++:  void setUseIPP(bool flag)
+    private static native void setUseIPP_0(boolean flag);
+private static native double[] n_minMaxLocManual(long src_nativeObj, long mask_nativeObj);
 
 }

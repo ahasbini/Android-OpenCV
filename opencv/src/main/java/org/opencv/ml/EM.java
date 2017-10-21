@@ -4,6 +4,7 @@
 //
 package org.opencv.ml;
 
+import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
 import org.opencv.core.Mat;
@@ -66,6 +67,29 @@ public class EM extends StatModel {
     {
         
         EM retVal = new EM(create_0());
+        
+        return retVal;
+    }
+
+
+    //
+    // C++: static Ptr_EM load(String filepath, String nodeName = String())
+    //
+
+    //javadoc: EM::load(filepath, nodeName)
+    public static EM load(String filepath, String nodeName)
+    {
+        
+        EM retVal = new EM(load_0(filepath, nodeName));
+        
+        return retVal;
+    }
+
+    //javadoc: EM::load(filepath)
+    public static EM load(String filepath)
+    {
+        
+        EM retVal = new EM(load_1(filepath));
         
         return retVal;
     }
@@ -163,6 +187,29 @@ public class EM extends StatModel {
     {
         
         boolean retVal = trainM_1(nativeObj, samples.nativeObj, probs0.nativeObj);
+        
+        return retVal;
+    }
+
+
+    //
+    // C++:  float predict(Mat samples, Mat& results = Mat(), int flags = 0)
+    //
+
+    //javadoc: EM::predict(samples, results, flags)
+    public  float predict(Mat samples, Mat results, int flags)
+    {
+        
+        float retVal = predict_0(nativeObj, samples.nativeObj, results.nativeObj, flags);
+        
+        return retVal;
+    }
+
+    //javadoc: EM::predict(samples)
+    public  float predict(Mat samples)
+    {
+        
+        float retVal = predict_1(nativeObj, samples.nativeObj);
         
         return retVal;
     }
@@ -269,6 +316,10 @@ public class EM extends StatModel {
     // C++: static Ptr_EM create()
     private static native long create_0();
 
+    // C++: static Ptr_EM load(String filepath, String nodeName = String())
+    private static native long load_0(String filepath, String nodeName);
+    private static native long load_1(String filepath);
+
     // C++:  TermCriteria getTermCriteria()
     private static native double[] getTermCriteria_0(long nativeObj);
 
@@ -286,6 +337,10 @@ public class EM extends StatModel {
     // C++:  bool trainM(Mat samples, Mat probs0, Mat& logLikelihoods = Mat(), Mat& labels = Mat(), Mat& probs = Mat())
     private static native boolean trainM_0(long nativeObj, long samples_nativeObj, long probs0_nativeObj, long logLikelihoods_nativeObj, long labels_nativeObj, long probs_nativeObj);
     private static native boolean trainM_1(long nativeObj, long samples_nativeObj, long probs0_nativeObj);
+
+    // C++:  float predict(Mat samples, Mat& results = Mat(), int flags = 0)
+    private static native float predict_0(long nativeObj, long samples_nativeObj, long results_nativeObj, int flags);
+    private static native float predict_1(long nativeObj, long samples_nativeObj);
 
     // C++:  int getClustersNumber()
     private static native int getClustersNumber_0(long nativeObj);

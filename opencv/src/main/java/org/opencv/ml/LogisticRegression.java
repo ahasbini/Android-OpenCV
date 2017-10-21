@@ -4,6 +4,7 @@
 //
 package org.opencv.ml;
 
+import java.lang.String;
 import org.opencv.core.Mat;
 import org.opencv.core.TermCriteria;
 
@@ -45,6 +46,29 @@ public class LogisticRegression extends StatModel {
     {
         
         LogisticRegression retVal = new LogisticRegression(create_0());
+        
+        return retVal;
+    }
+
+
+    //
+    // C++: static Ptr_LogisticRegression load(String filepath, String nodeName = String())
+    //
+
+    //javadoc: LogisticRegression::load(filepath, nodeName)
+    public static LogisticRegression load(String filepath, String nodeName)
+    {
+        
+        LogisticRegression retVal = new LogisticRegression(load_0(filepath, nodeName));
+        
+        return retVal;
+    }
+
+    //javadoc: LogisticRegression::load(filepath)
+    public static LogisticRegression load(String filepath)
+    {
+        
+        LogisticRegression retVal = new LogisticRegression(load_1(filepath));
         
         return retVal;
     }
@@ -253,6 +277,10 @@ public class LogisticRegression extends StatModel {
 
     // C++: static Ptr_LogisticRegression create()
     private static native long create_0();
+
+    // C++: static Ptr_LogisticRegression load(String filepath, String nodeName = String())
+    private static native long load_0(String filepath, String nodeName);
+    private static native long load_1(String filepath);
 
     // C++:  TermCriteria getTermCriteria()
     private static native double[] getTermCriteria_0(long nativeObj);

@@ -13,6 +13,7 @@ public class KalmanFilter {
     protected final long nativeObj;
     protected KalmanFilter(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
 
     //
     // C++:   KalmanFilter(int dynamParams, int measureParams, int controlParams = 0, int type = CV_32F)

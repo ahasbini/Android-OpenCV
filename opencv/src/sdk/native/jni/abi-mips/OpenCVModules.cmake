@@ -16,7 +16,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set(_targetsDefined)
 set(_targetsNotDefined)
 set(_expectedTargets)
-foreach(_expectedTarget libtiff libjpeg libwebp libjasper libpng IlmImf tbb opencv_core opencv_flann opencv_imgproc opencv_ml opencv_photo opencv_video opencv_imgcodecs opencv_shape opencv_videoio opencv_highgui opencv_objdetect opencv_superres opencv_features2d opencv_calib3d opencv_java opencv_stitching opencv_videostab)
+foreach(_expectedTarget libcpufeatures libtiff libjpeg libwebp libjasper libpng IlmImf tbb libprotobuf opencv_core opencv_flann opencv_imgproc opencv_ml opencv_objdetect opencv_photo opencv_video opencv_dnn opencv_imgcodecs opencv_shape opencv_videoio opencv_highgui opencv_superres opencv_features2d opencv_calib3d opencv_java opencv_stitching opencv_videostab)
   list(APPEND _expectedTargets ${_expectedTarget})
   if(NOT TARGET ${_expectedTarget})
     list(APPEND _targetsNotDefined ${_expectedTarget})
@@ -45,6 +45,9 @@ get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
 get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
 get_filename_component(_IMPORT_PREFIX "${_IMPORT_PREFIX}" PATH)
 
+# Create imported target libcpufeatures
+add_library(libcpufeatures STATIC IMPORTED)
+
 # Create imported target libtiff
 add_library(libtiff STATIC IMPORTED)
 
@@ -70,6 +73,9 @@ set_target_properties(tbb PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "TBB_USE_GCC_BUILTINS=1;__TBB_GCC_BUILTIN_ATOMICS_PRESENT=1"
 )
 
+# Create imported target libprotobuf
+add_library(libprotobuf STATIC IMPORTED)
+
 # Create imported target opencv_core
 add_library(opencv_core STATIC IMPORTED)
 
@@ -82,11 +88,17 @@ add_library(opencv_imgproc STATIC IMPORTED)
 # Create imported target opencv_ml
 add_library(opencv_ml STATIC IMPORTED)
 
+# Create imported target opencv_objdetect
+add_library(opencv_objdetect STATIC IMPORTED)
+
 # Create imported target opencv_photo
 add_library(opencv_photo STATIC IMPORTED)
 
 # Create imported target opencv_video
 add_library(opencv_video STATIC IMPORTED)
+
+# Create imported target opencv_dnn
+add_library(opencv_dnn STATIC IMPORTED)
 
 # Create imported target opencv_imgcodecs
 add_library(opencv_imgcodecs STATIC IMPORTED)
@@ -99,9 +111,6 @@ add_library(opencv_videoio STATIC IMPORTED)
 
 # Create imported target opencv_highgui
 add_library(opencv_highgui STATIC IMPORTED)
-
-# Create imported target opencv_objdetect
-add_library(opencv_objdetect STATIC IMPORTED)
 
 # Create imported target opencv_superres
 add_library(opencv_superres STATIC IMPORTED)

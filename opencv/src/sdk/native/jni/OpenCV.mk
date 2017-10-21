@@ -18,7 +18,7 @@ OPENCV_LIBS_DIR:=$(OPENCV_THIS_DIR)/../libs/$(OPENCV_TARGET_ARCH_ABI)
 OPENCV_3RDPARTY_LIBS_DIR:=$(OPENCV_THIS_DIR)/../3rdparty/libs/$(OPENCV_TARGET_ARCH_ABI)
 OPENCV_BASEDIR:=
 OPENCV_LOCAL_C_INCLUDES:="$(LOCAL_PATH)/$(OPENCV_THIS_DIR)/include/opencv" "$(LOCAL_PATH)/$(OPENCV_THIS_DIR)/include"
-OPENCV_MODULES:=shape stitching objdetect superres videostab calib3d features2d highgui videoio imgcodecs video photo ml imgproc flann core
+OPENCV_MODULES:=dnn ml objdetect shape stitching superres videostab calib3d features2d highgui videoio imgcodecs video photo imgproc flann core
 OPENCV_SUB_MK:=$(call my-dir)/OpenCV-$(TARGET_ARCH_ABI).mk
 
 ifeq ($(OPENCV_LIB_TYPE),)
@@ -94,6 +94,8 @@ LOCAL_CFLAGS     += $(OPENCV_LOCAL_CFLAGS)
 ifeq ($(OPENCV_INSTALL_MODULES),on)
     LOCAL_$(OPENCV_LIB_TYPE)_LIBRARIES += $(foreach mod, $(OPENCV_LIBS), opencv_$(mod))
 else
+    $(call __ndk_info,OpenCV: You should ignore warning about 'non-system libraries in linker flags' and 'opencv_java' library.)
+    $(call __ndk_info,        'OPENCV_INSTALL_MODULES:=on' can be used to build APK with included OpenCV binaries)
     LOCAL_LDLIBS += -L$(call host-path,$(LOCAL_PATH)/$(OPENCV_LIBS_DIR)) $(foreach lib, $(OPENCV_LIBS), -lopencv_$(lib))
 endif
 

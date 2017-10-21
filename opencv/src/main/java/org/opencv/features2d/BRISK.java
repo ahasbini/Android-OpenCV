@@ -5,10 +5,11 @@
 package org.opencv.features2d;
 
 import java.util.ArrayList;
+import java.util.List;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfInt;
-import org.opencv.features2d.Feature2D;
+import org.opencv.utils.Converters;
 
 // C++: class BRISK
 //javadoc: BRISK

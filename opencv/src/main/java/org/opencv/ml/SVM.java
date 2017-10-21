@@ -79,6 +79,20 @@ public class SVM extends StatModel {
 
 
     //
+    // C++: static Ptr_ParamGrid getDefaultGridPtr(int param_id)
+    //
+
+    //javadoc: SVM::getDefaultGridPtr(param_id)
+    public static ParamGrid getDefaultGridPtr(int param_id)
+    {
+        
+        ParamGrid retVal = new ParamGrid(getDefaultGridPtr_0(param_id));
+        
+        return retVal;
+    }
+
+
+    //
     // C++: static Ptr_SVM create()
     //
 
@@ -115,6 +129,29 @@ public class SVM extends StatModel {
     {
         
         TermCriteria retVal = new TermCriteria(getTermCriteria_0(nativeObj));
+        
+        return retVal;
+    }
+
+
+    //
+    // C++:  bool trainAuto(Mat samples, int layout, Mat responses, int kFold = 10, Ptr_ParamGrid Cgrid = SVM::getDefaultGridPtr(SVM::C), Ptr_ParamGrid gammaGrid = SVM::getDefaultGridPtr(SVM::GAMMA), Ptr_ParamGrid pGrid = SVM::getDefaultGridPtr(SVM::P), Ptr_ParamGrid nuGrid = SVM::getDefaultGridPtr(SVM::NU), Ptr_ParamGrid coeffGrid = SVM::getDefaultGridPtr(SVM::COEF), Ptr_ParamGrid degreeGrid = SVM::getDefaultGridPtr(SVM::DEGREE), bool balanced = false)
+    //
+
+    //javadoc: SVM::trainAuto(samples, layout, responses, kFold, Cgrid, gammaGrid, pGrid, nuGrid, coeffGrid, degreeGrid, balanced)
+    public  boolean trainAuto(Mat samples, int layout, Mat responses, int kFold, ParamGrid Cgrid, ParamGrid gammaGrid, ParamGrid pGrid, ParamGrid nuGrid, ParamGrid coeffGrid, ParamGrid degreeGrid, boolean balanced)
+    {
+        
+        boolean retVal = trainAuto_0(nativeObj, samples.nativeObj, layout, responses.nativeObj, kFold, Cgrid.getNativeObjAddr(), gammaGrid.getNativeObjAddr(), pGrid.getNativeObjAddr(), nuGrid.getNativeObjAddr(), coeffGrid.getNativeObjAddr(), degreeGrid.getNativeObjAddr(), balanced);
+        
+        return retVal;
+    }
+
+    //javadoc: SVM::trainAuto(samples, layout, responses)
+    public  boolean trainAuto(Mat samples, int layout, Mat responses)
+    {
+        
+        boolean retVal = trainAuto_1(nativeObj, samples.nativeObj, layout, responses.nativeObj);
         
         return retVal;
     }
@@ -402,6 +439,9 @@ public class SVM extends StatModel {
     // C++:  Mat getUncompressedSupportVectors()
     private static native long getUncompressedSupportVectors_0(long nativeObj);
 
+    // C++: static Ptr_ParamGrid getDefaultGridPtr(int param_id)
+    private static native long getDefaultGridPtr_0(int param_id);
+
     // C++: static Ptr_SVM create()
     private static native long create_0();
 
@@ -410,6 +450,10 @@ public class SVM extends StatModel {
 
     // C++:  TermCriteria getTermCriteria()
     private static native double[] getTermCriteria_0(long nativeObj);
+
+    // C++:  bool trainAuto(Mat samples, int layout, Mat responses, int kFold = 10, Ptr_ParamGrid Cgrid = SVM::getDefaultGridPtr(SVM::C), Ptr_ParamGrid gammaGrid = SVM::getDefaultGridPtr(SVM::GAMMA), Ptr_ParamGrid pGrid = SVM::getDefaultGridPtr(SVM::P), Ptr_ParamGrid nuGrid = SVM::getDefaultGridPtr(SVM::NU), Ptr_ParamGrid coeffGrid = SVM::getDefaultGridPtr(SVM::COEF), Ptr_ParamGrid degreeGrid = SVM::getDefaultGridPtr(SVM::DEGREE), bool balanced = false)
+    private static native boolean trainAuto_0(long nativeObj, long samples_nativeObj, int layout, long responses_nativeObj, int kFold, long Cgrid_nativeObj, long gammaGrid_nativeObj, long pGrid_nativeObj, long nuGrid_nativeObj, long coeffGrid_nativeObj, long degreeGrid_nativeObj, boolean balanced);
+    private static native boolean trainAuto_1(long nativeObj, long samples_nativeObj, int layout, long responses_nativeObj);
 
     // C++:  double getC()
     private static native double getC_0(long nativeObj);

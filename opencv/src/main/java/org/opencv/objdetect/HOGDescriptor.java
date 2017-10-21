@@ -6,12 +6,14 @@ package org.opencv.objdetect;
 
 import java.lang.String;
 import java.util.ArrayList;
+import java.util.List;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
 import org.opencv.core.MatOfFloat;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Size;
+import org.opencv.utils.Converters;
 
 // C++: class HOGDescriptor
 //javadoc: HOGDescriptor
@@ -20,6 +22,7 @@ public class HOGDescriptor {
     protected final long nativeObj;
     protected HOGDescriptor(long addr) { nativeObj = addr; }
 
+    public long getNativeObjAddr() { return nativeObj; }
 
     public static final int
             L2Hys = 0,

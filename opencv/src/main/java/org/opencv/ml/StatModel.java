@@ -85,7 +85,7 @@ public class StatModel extends Algorithm {
     public  boolean train(TrainData trainData, int flags)
     {
         
-        boolean retVal = train_1(nativeObj, trainData.nativeObj, flags);
+        boolean retVal = train_1(nativeObj, trainData.getNativeObjAddr(), flags);
         
         return retVal;
     }
@@ -94,7 +94,7 @@ public class StatModel extends Algorithm {
     public  boolean train(TrainData trainData)
     {
         
-        boolean retVal = train_2(nativeObj, trainData.nativeObj);
+        boolean retVal = train_2(nativeObj, trainData.getNativeObjAddr());
         
         return retVal;
     }
@@ -108,7 +108,7 @@ public class StatModel extends Algorithm {
     public  float calcError(TrainData data, boolean test, Mat resp)
     {
         
-        float retVal = calcError_0(nativeObj, data.nativeObj, test, resp.nativeObj);
+        float retVal = calcError_0(nativeObj, data.getNativeObjAddr(), test, resp.nativeObj);
         
         return retVal;
     }
