@@ -2,6 +2,8 @@
 An Android Studio project which has a module that contains OpenCV SDK files ported and configured to 
 use CMake and Gradle plugin 2.3.1 or above, making it easy to include OpenCV into Android applications.
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--OpenCV-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/6360)
+
 ## Integration
 
 Currently the doc contains details of integrating the ```opencv``` module into an exiting git repo 
