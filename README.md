@@ -1,5 +1,5 @@
 # WARNING
-This repository has been archived and will no longer be supported due to a problem descibed in issue #1: 
+This repository will be archived and will no longer be supported due to a problem descibed in issue #1: 
 [OpenCV 3.3.0 & Git LFS - Quota Limits](https://github.com/ahasbini/Android-OpenCV/issues/1).
 
 A new solution has been developed which takes the form of a Gradle Plugin that can be used inside 
