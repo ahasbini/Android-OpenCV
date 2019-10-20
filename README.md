@@ -1,8 +1,15 @@
+# WARNING
+This repository has been archived and will no longer be supported due to a problem descibed in issue #1: 
+[OpenCV 3.3.0 & Git LFS - Quota Limits](https://github.com/ahasbini/Android-OpenCV/issues/1).
+
+A new solution has been developed which takes the form of a Gradle Plugin that can be used inside 
+projects rather than using Git Submodules and GitLFS for getting and linking the binaries. The new 
+Gradle Plugin can be found here: 
+[AndroidOpenCVGradlePlugin](https://github.com/ahasbini/AndroidOpenCVGradlePlugin). 
+
 # Android-OpenCV
 An Android Studio project which has a module that contains OpenCV SDK files ported and configured to 
 use CMake and Gradle plugin 2.3.1 or above, making it easy to include OpenCV into Android applications.
-
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android--OpenCV-brightgreen.svg?style=flat)](https://android-arsenal.com/details/3/6360)
 
 ## Integration
 
